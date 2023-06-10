@@ -3,10 +3,10 @@ int LED2 = 11;
 int LED3 = 10;
 int LED4 = 9;
 
-int DIP1 = 3;
-int DIP2 = 2;
-int DIP3 = 1;
-int DIP4 = 0;
+int DIP1 = 5;
+int DIP2 = 4;
+int DIP3 = 3;
+int DIP4 = 2;
 
 void setup() {
   pinMode(LED1, OUTPUT);
@@ -19,7 +19,6 @@ void setup() {
   pinMode(DIP4, INPUT);
 }
 
-// Problem is that this code is sequential, will flash at different times depending on when the switch is turned on
 void loop() {
   if (digitalRead(DIP1) == HIGH) {
     digitalWrite(LED1, HIGH);
