@@ -27,26 +27,26 @@ void calculator() {
   if (digitalRead(DIP1) == HIGH) {
     input = 1;
     total += input;
-    //Serial.write("yeet");
     Serial.println(total);
     delay(1000);
   }
 }
 
 void displayTotal() {
-  int result = total;
-  for (int i = 0; i< 4; ++) {
+  int result = total%16; // 2^4 => can hold values 0-15
+  for (int i = 1; i <= 4; i++) {
     result = result%2;
-    if (result == 0) {
-      
+    if (result == 1) {
+      digitalWrite(6-i, HIGH); // Take the offset of the pins versus the LED number
+    }
+    else {
+      digitalWrite(6-i, LOW);
     }
   }
 }
-
 
 void loop() {
   // half byte register
   calculator();
   displayTotal();
-
 }
