@@ -1,6 +1,7 @@
 int sensorPin = A0;
 int sensorValue = 0;
 
+// default pin for LED_BUILTIN on Arduino UNO
 int onboardLED = 13;
 
 void setup() {
@@ -12,7 +13,15 @@ void setup() {
 
 void loop() {
   sensorValue = analogRead(sensorPin);
-  Serial.println(sensorValue);
-  delay(1000);
+  
+  // blink LED depending on resistance
+  // high resistance when bright => slower blinks
+  // low resistance when dark => quicker blinks
+  digitalWrite(onboardLED, HIGH);
+  delay(sensorValue);
+  digitalWrite(onboardLED, LOW);
+  delay(sensorValue);
 
+  // print data
+  Serial.println(sensorValue);
 }
