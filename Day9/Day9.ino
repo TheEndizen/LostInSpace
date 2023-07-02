@@ -32,8 +32,21 @@ double displayBatteryPercentage() {
   Serial.print(percentCharged);
   Serial.println("%"); // creates new line
 
-  // set the LED to match the corresponding level of battery percentage
-  // use switch cases
+  // simulate battery charge
+  batteryLevel += sensorValue;
+  ticks += wait;
+
+  // set the color of the LED
+  if (percentCharged <= 25)
+  {
+    rgbColour(125, 0, 0); // red
+  }
+  else if (percentCharged <= 50) {
+    rgbColour(255, 40, 0); // yellow
+  }
+  else if (percentCharged > 75) {
+    rgbColour(0, 125, 0); // green
+  }
 }
 
 void setup() {
@@ -57,16 +70,12 @@ void loop() {
     Serial.println("FULLY CHARGED");
     batteryLevel = batteryCapacity;
     ticks = 0;
-    rbgColour(0, 125, 0); // display green for fully charged
+    rgbColour(0, 125, 0); // display green for fully charged
     delay(30000); // arbitrarily large wait time
   }
   else {
     displayBatteryPercentage();
   }
-
-  // simulate battery charge
-  batteryLevel += sensorValue;
-  ticks += wait;
 
   delay(wait); // increase every 100ms
 }
