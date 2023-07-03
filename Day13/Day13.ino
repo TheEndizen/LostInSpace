@@ -16,37 +16,44 @@ char buttons[ROWS][COLS] = {
 };
 
 Keypad matrix = Keypad(makeKeymap(buttons), rowPins, colPins, ROWS, COLS); // library function
-
-// assign a frequency to each tone
-int tones[ROWS][COLS] = {
-  {31, 93, 147, 208},
-  {247, 311, 370, 440},
-  {523, 587, 698, 880},
-  {1397, 2637, 3729, 4978}
-};
-
-// pin requires pulse width modulation
-int buzzer = 10;
-
+ 
 // define a password set
 const byte passLength = 4;
-char password[passLength] = {0, 0, 0, 0};
+char password[passLength] = {'0','0','0','0'};
 
 void passReset() {
   Serial.println("Please enter a new password: ");
 
   char input = matrix.getKey();
   for (byte i = 0; i < passLength; i++) {
-    while(  !( input)  ) {
+    while(  !( input = matrix.getKey() )  ) {
       // wait indefinitely for keypad input of any kind
     }
     password[i] = input;
     Serial.print("*");
   }
-  Serial.println();
+  Serial.println("");
   Serial.println("Password changed successfully.");
+  setup();
 }
 
+void passEnter() {
+  char input = matrix.getKey();
+  Serial.println("Please enter the password.");
+  for (byte i = 0; i < passLength; i++) {
+    while (  !( input = matrix.getKey() )  ) {
+      // wait for an input
+    }
+    Serial.print("*");
+    if (input != password[i]) {
+      Serial.println("");
+      Serial.println("Incorrect password.");
+      return; // stop as soon as the password is incorrect
+    }
+  }
+  Serial.println("");
+  Serial.println("Correct password.");
+}
 
 void setup() {
   Serial.begin(9600);
@@ -65,7 +72,8 @@ void loop() {
     passReset();
   }
   else if (input == '#') {
-    Serial.println("Please enter the password.");
+    delay(500);
+    passEnter();
   }
 
 }
