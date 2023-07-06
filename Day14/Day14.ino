@@ -95,7 +95,7 @@ void playSuccess() {
   rgbColour(0, 125, 0);
   tone(buzzer, 1000, 200);
   delay(200);
-  tone(buzzer, 2700, 1000);
+  tone(buzzer, 1700, 200);
   delay(1000);
   noTone(buzzer);
   rgbColour(0, 0, 0);
@@ -119,6 +119,10 @@ void setup() {
 
 void loop() {
   char input = matrix.getKey();
+
+  while (  !( input = matrix.getKey() )  ) {
+      // wait for an input
+  }
   playInput();
   
   if (input == '*') {
