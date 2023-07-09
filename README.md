@@ -9,10 +9,12 @@ Go to <code> Tools > Port > COM5/COM6 </code> to set the port. (Depends on which
 
 ## Library Setup ##
 Go to <code> Tools > Manage Libraries... </code> to install libraries.  
-Day 11 requires <code> Keypad by Mark Stanley, Alexander Bevig </code>.
+Day 11 requires <code> Keypad by Mark Stanley, Alexander Bevig </code>.  
+Day 16 requires <code> TM1637 by Avishay Orpaz </code>.
+
 
 ## Formatting ##
-Arduino projects are built in folders, where the name of the folder must match the name of the <code>.ino </code> file or "sketch".
+An Arduino project or "sketch" is built in a folder, where the name of the folder must match the name of the <code>.ino </code> file.
 
 ## Schematics ##
 Diagrams are modelled in TinkerCAD and may vary due to availability of components. UNO board is used instead of the adventure kit's HERO board but the schematics are analogous since the pinout scheme is the same for the analog and digital pins. (ie. The HERO Board mirrors the Arduino UNO R3 board.)
