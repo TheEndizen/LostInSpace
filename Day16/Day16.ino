@@ -7,11 +7,10 @@
 // create object
 TM1637Display display = TM1637Display(CLK, DIO);
 
-
 // each segment of each digit is represented as a bit in the 8 bit sequence
 // hex FF <=> bin 11111111 <=> dec 255
-const uint8_t onMap[] =   {0xFF, 0xFF, 0xFF, 0xFF};
 // hex 0 <=> bin 0 <=> dec 0
+const uint8_t onMap[] =   {0xFF, 0xFF, 0xFF, 0xFF};
 const uint8_t offMap[]  = {0x00, 0x00, 0x00, 0x00};
 
 // use bitwise operators to set
@@ -22,6 +21,7 @@ const uint8_t dead[] = {
   SEG_A | SEG_B | SEG_C | SEG_E | SEG_F | SEG_G,
   SEG_B | SEG_C | SEG_D | SEG_E | SEG_G
 };
+
 const uint8_t beef[] = {
   SEG_C | SEG_D | SEG_E | SEG_F | SEG_G, 
   SEG_A | SEG_D | SEG_E | SEG_F | SEG_G,
@@ -32,9 +32,10 @@ const uint8_t beef[] = {
 
 void setup() {
   display.clear();          // reset display
-  display.setBrightness(0); // set the brightness, ranges from 0 to 7
+  display.setBrightness(0); // set the brightness, or nothing will show. Ranges from 0 to 7
   delay(1000);
 }
+
 
 void loop() {
   // blink sequence
