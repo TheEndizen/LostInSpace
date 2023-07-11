@@ -10,8 +10,8 @@ TM1637Display display = TM1637Display(CLK, DIO);
 // each segment of each digit is represented as a bit in the 8 bit sequence
 // hex FF <=> bin 11111111 <=> dec 255
 // hex 0 <=> bin 0 <=> dec 0
-const uint8_t onMap[] =   {0xFF, 0xFF, 0xFF, 0xFF};
-const uint8_t offMap[]  = {0x00, 0x00, 0x00, 0x00};
+const uint8_t data[] =   {0xFF, 0xFF, 0xFF, 0xFF};
+const uint8_t blank[]  = {0x00, 0x00, 0x00, 0x00};
 
 // use bitwise operators to set
 // SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G
@@ -39,11 +39,11 @@ void setup() {
 
 void loop() {
   // blink sequence
-  display.setSegments(onMap);
+  display.setSegments(data);
   delay(1000);
   display.clear();
   delay(2000);
-  display.setSegments(onMap);
+  display.setSegments(data);
   delay(1000);
 
   int i;
