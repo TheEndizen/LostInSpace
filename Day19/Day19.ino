@@ -8,9 +8,9 @@
 #define CLK 6
 #define DIO 5
  
-#define SECRET1 XXX
-#define SECRET2 YYY
-#define SECRET3 ZZZ
+#define SECRET1 23
+#define SECRET2 353
+#define SECRET3 1688
  
 // Create display object of type TM1637Display:
 TM1637Display OurDisplay = TM1637Display(CLK, DIO);
